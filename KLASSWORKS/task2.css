@@ -1,0 +1,48 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+.container {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(4,1fr);
+    background-color: black;
+}
+
+.container > div {
+    background-color: aqua;
+    padding: 2rem 0;
+    display: grid;
+    justify-items: center;
+    font-size: 2rem;
+    color:black;
+  }
+
+  .item1 {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  item
+  
+  .item1 {
+    grid-area:1;
+  }
+  .item2 {
+    grid-area: 2;
+  }
+  .item3 {
+    grid-area: 3;
+  }
+  .item4 {
+    grid-area: 4;
+  }
+  .item5 {
+    grid-area: 5;
+  }
+  .item6 {
+    grid-area: 6;
+  }
