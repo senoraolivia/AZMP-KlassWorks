@@ -1,0 +1,24 @@
+header {
+    background: teal;
+    padding: 2rem;
+    .header  {
+        nav 
+        ul {
+            display: flex;
+            justify-content: space-between;
+            text-decoration: none;
+            li {
+                list-style: none;
+                a {
+                    color: white;
+                    list-style-type: none;
+        
+                }
+            }
+        }
+    }
+}
+
+
+
+
