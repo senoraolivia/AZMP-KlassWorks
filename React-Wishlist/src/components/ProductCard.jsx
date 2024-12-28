@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { FaRegHeart, FaHeart } from 'react-icons/fa';
 import styles from "./index.module.scss"
 
 const ProductCard = ({ product, isFavourite, addToFavourites, removeFromFavourites }) => {
   const [isLiked, setIsLiked] = useState(isFavourite);
 
-  const handleLike = () => {
+  const handleLike = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     setIsLiked(!isLiked);
     if (isLiked) {
       removeFromFavourites(product.id);
@@ -16,18 +19,28 @@ const ProductCard = ({ product, isFavourite, addToFavourites, removeFromFavourit
 
   return (
     <div className={styles.productCard}>
-      <img src={product.image} alt={product.title} />
-      <h3>{product.title}</h3>
-      <p>{product.description}</p>
-      <p>${product.price}</p>
-      <div className="rating">
-        <span>{product.rating.rate} ({product.rating.count})</span>
+      <div className={styles.imageContainer}>
+        <img src={product.image} alt={product.title} />
       </div>
-      <div onClick={handleLike}>
-        {isLiked ? <FaHeart /> : <FaRegHeart />}
+      <div className={styles.productInfo}>
+        <h3>{product.title}</h3>
+        <p className={styles.description}>{product.description.substring(0, 100)}...</p>
+        <p className={styles.price}>${product.price}</p>
+        <div className={styles.rating}>
+          <span>★ {product.rating.rate} ({product.rating.count})</span>
+        </div>
+      </div>
+      <div className={styles.cardActions}>
+        <Link to={`/product/${product.id}`} className={styles.detailsButton}>
+          Details
+        </Link>
+        <button className={styles.likeButton} onClick={handleLike}>
+          {isLiked ? <FaHeart className={styles.liked} /> : <FaRegHeart />}
+        </button>
       </div>
     </div>
   );
 };
 
 export default ProductCard;
+
