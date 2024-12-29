@@ -1,29 +1,16 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { FaRegHeart, FaHeart } from 'react-icons/fa';
 import productsData from '../data/productsData';
-import { FavouritesContext } from '../context/FavouritesContext';
-import styles from "./index.module.scss";
+import styles from "../components/index.module.scss";
 
-const DetailPage = () => {
+const DetailsPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const product = productsData.find(p => p.id === parseInt(id));
-  const { favourites, addToFavourites, removeFromFavourites } = useContext(FavouritesContext);
+  const product = productsData.find(p => p.id === parseInt(id || ''));
 
   if (!product) {
-    return <div className={styles.detailPage}>Product not found</div>;
+    return <div>Product not found</div>;
   }
-
-  const isFavourite = favourites.includes(product.id);
-
-  const handleLike = () => {
-    if (isFavourite) {
-      removeFromFavourites(product.id);
-    } else {
-      addToFavourites(product.id);
-    }
-  };
 
   return (
     <div className={styles.detailPage}>
@@ -43,22 +30,11 @@ const DetailPage = () => {
             <span>★ {product.rating.rate}</span>
             <span>({product.rating.count} reviews)</span>
           </div>
-          <button onClick={handleLike} className={styles.favouriteButton}>
-            {isFavourite ? (
-              <>
-                <FaHeart /> Remove from Favourites
-              </>
-            ) : (
-              <>
-                <FaRegHeart /> Add to Favourites
-              </>
-            )}
-          </button>
         </div>
       </div>
     </div>
   );
 };
 
-export default DetailPage;
+export default DetailsPage;
 
