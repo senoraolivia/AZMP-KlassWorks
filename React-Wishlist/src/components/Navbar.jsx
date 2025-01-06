@@ -1,10 +1,14 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { FavouritesContext } from '../context/FavouritesContext';
-import styles from "./index.module.scss"
+import { ProductsContext } from '../context/ProductsContext';
+import styles from './index.module.scss';
 
 const Navbar = ({ searchTerm, setSearchTerm }) => {
   const { favourites } = useContext(FavouritesContext);
+  const { basket } = useContext(ProductsContext); // Access the basket from the context
+
+  const totalQuantity = basket.reduce((total, item) => total + item.quantity, 0); // Calculate total quantity in the basket
 
   return (
     <header className={styles.header}>
@@ -15,8 +19,12 @@ const Navbar = ({ searchTerm, setSearchTerm }) => {
           <li><Link to="/details">Details</Link></li>
           <li>
             <Link to="/favourites">
-              Favourites
-              <span className={styles.favouriteCount}>({favourites.length})</span>
+              Favourites<sup>{favourites.length}</sup>
+            </Link>
+          </li>
+          <li>
+            <Link to="/basket">
+              Basket<sup>{totalQuantity}</sup>
             </Link>
           </li>
         </ul>
@@ -34,4 +42,3 @@ const Navbar = ({ searchTerm, setSearchTerm }) => {
 };
 
 export default Navbar;
-

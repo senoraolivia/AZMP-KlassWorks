@@ -1,7 +1,7 @@
 .header {
     background: darkolivegreen;
     padding: 1rem 2rem;
-    width: 100%;
+    width: 92rem;
   
     nav {
       display: flex;
@@ -31,7 +31,7 @@
   
     .searchBar {
       margin-top: 1rem;
-      width: 100%;
+      width: 25%;
   
       input {
         width: 100%;
@@ -111,8 +111,8 @@
   
     .likeButton {
       position: absolute;
-      top: 0.5rem;
-      right: 0.5rem;
+      bottom: 0.5rem;
+      right: 1rem;
       background: none;
       border: none;
       cursor: pointer;

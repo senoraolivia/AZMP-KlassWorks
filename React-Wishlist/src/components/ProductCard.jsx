@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaRegHeart, FaHeart } from 'react-icons/fa';
-import styles from "./index.module.scss"
+import styles from './index.module.scss';
 
-const ProductCard = ({ product, isFavourite, addToFavourites, removeFromFavourites }) => {
+const ProductCard = ({ product, isFavourite, addToFavourites, removeFromFavourites, addToBasket }) => {
   const [isLiked, setIsLiked] = useState(isFavourite);
 
   const handleLike = (e) => {
@@ -15,6 +15,10 @@ const ProductCard = ({ product, isFavourite, addToFavourites, removeFromFavourit
     } else {
       addToFavourites(product.id);
     }
+  };
+
+  const handleAddToCart = () => {
+    addToBasket(product);
   };
 
   return (
@@ -37,10 +41,13 @@ const ProductCard = ({ product, isFavourite, addToFavourites, removeFromFavourit
         <button className={styles.likeButton} onClick={handleLike}>
           {isLiked ? <FaHeart className={styles.liked} /> : <FaRegHeart />}
         </button>
+        <button className={styles.addToCartButton} onClick={handleAddToCart}>
+          Add to Cart
+        </button>
       </div>
     </div>
   );
 };
 
 export default ProductCard;
-
+  
